@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14-alpine
+    container_name: po-report-db
+    environment:
+      POSTGRES_PASSWORD: Welcome123
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
+      - ./sample_data.sql:/docker-entrypoint-initdb.d/2-sample_data.sql
+      - ./report_procedure.sql:/docker-entrypoint-initdb.d/3-report_procedure.sql 
